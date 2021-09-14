@@ -1,0 +1,18 @@
+{
+    "productos":[
+        {
+            "nombre": "Wall-E, robot todoterreno",
+            "venta": false,
+            "precio": 50.00,
+            "foto": "./public/images/robot.jpg",
+            "tags": ["gadget", "tecnología"]
+        },
+        {
+            "nombre": "conche fantástico",
+            "venta": true,
+            "precio": 350000.00,
+            "foto": "./public/images/coche.jpg",
+            "tags": ["vehículo", "lifestyle", "tecnología"]
+        }
+    ]
+}
