@@ -10,10 +10,16 @@ const productSchema = mongoose.Schema({
     tags: Array
 });
 
-productSchema.statics.lista = function(filtro){
+productSchema.statics.lista = function(filtro, skip, limit, select, sort){
     const query = Producto.find(filtro);
+    query.skip(skip);
+    query.limit(limit);
+    query.select(select);
+    query.sort(sort);
+    return query.exec();
 }
 
 const Producto = mongoose.model('Producto', productSchema);
+
 
 module.exports = Producto;

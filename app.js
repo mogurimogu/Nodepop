@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Titulo personalizado del sitio
+app.locals.title = 'Nodepop'
+
 // Rutas de mi Api
 app.use(('/api/productos'), require('./routes/api/productos'))
 

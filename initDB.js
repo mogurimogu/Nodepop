@@ -9,7 +9,6 @@ main().catch(err => console.log('hubo un error: ', err));
 
 async function main() {
     await initProductos();
-
     dbConection.close();
 }
 

@@ -8,7 +8,7 @@
             "tags": ["gadget", "tecnología"]
         },
         {
-            "nombre": "conche fantástico",
+            "nombre": "coche fantástico",
             "venta": true,
             "precio": 350000.00,
             "foto": "./public/images/coche.jpg",
