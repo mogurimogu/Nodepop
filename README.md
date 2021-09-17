@@ -21,6 +21,11 @@ La url donde se ejecuta la api es:
 
 [http://localhost:3000/api/productos](http://localhost:3000/api/productos)
 
+para ver las etiquetas de todos los productos:
+
+[http://localhost:3000/api/tags](http://localhost:3000/api/tags)
+
+
 ----
 ## Filtrado
 
@@ -41,3 +46,13 @@ La url donde se ejecuta la api es:
 
 ### priceSplitter:
 A la hora de aplicar el filtro precio se ejecuta una funcion llamada **priceSplitter** la cual devuelve 2 valores con los cuales ayuda a la hora del filtrado, esta función siempre devuelve 2 valores siendo el mínimo 0
+
+----
+
+##Front-End
+
+La web cuenta con un aspecto minimo en el cual se permiten todos los filtros previamente mencionados y cuenta con paginación.
+
+Además cuenta con un formulario de creación de productos completamente funcional.
+
+[http://localhost:3000/](http://localhost:3000/)
