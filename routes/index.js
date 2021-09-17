@@ -36,10 +36,10 @@ router.get('/', async (req, res, next) => {
           filtro.tags = tags
       }
 
-      
       const productos = await Producto.lista(filtro, skip || 0 , limit || 10, select, sort)
+      const tagList = await Producto.tags()
       
-      res.render('index', { productos, paginacion: {nombre, venta, precio, tags, skip, limit} })
+      res.render('index', { productos, paginacion: {nombre, venta, precio, tags, skip, limit}, tagList })
 
   } catch (err) {
       next(err)

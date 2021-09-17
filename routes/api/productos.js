@@ -37,6 +37,7 @@ router.get('/', async (req, res, next) => {
         }
 
         const productos = await Producto.lista(filtro, skip, limit, select, sort)
+
         res.json({result: productos})
         
     } catch (err) {

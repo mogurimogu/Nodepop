@@ -16,8 +16,15 @@ productSchema.statics.lista = function(filtro, skip, limit, select, sort){
     query.limit(limit);
     query.select(select);
     query.sort(sort);
+    query
     return query.exec();
 }
+
+productSchema.statics.tags = function(){
+    const query = Producto.find().distinct('tags');
+    return query.exec();
+}
+
 
 const Producto = mongoose.model('Producto', productSchema);
 

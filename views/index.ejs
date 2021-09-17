@@ -68,6 +68,12 @@
 
     </div>
     <div class="lateral">
+      <h2>Nube de etiquetas</h2>
+      <div class="tag-cloud">
+        <% for (const tag of tagList) { %> 
+          <a href="./?tags=<%= tag %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>"> <%= tag %>  </a>
+        <% } %>       
+      </div>
       <h2>Crear producto</h2>
       <form action="/api/productos" method="POST" id="form-add">
         <select name="venta">

@@ -27,6 +27,7 @@ app.locals.title = 'Nodepop'
 
 // Rutas de mi Api
 app.use(('/api/productos'), require('./routes/api/productos'))
+app.use(('/api/tags'), require('./routes/api/tags'))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
