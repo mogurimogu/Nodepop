@@ -62,18 +62,6 @@ router.post('/', async (req, res, next) => {
     }
   });
 
-  
-router.post('/', async (req, res, next) => {
-    try {
-        const productData = req.body;
-        const producto = new Producto(productData);
-        const productoCreado = await producto.save()
-        res.status(201).json({result: productoCreado})
-    } catch (err){
-        next(err)
-    }
-});
-
 // Para borrar un registro de la base de datos
 
 router.delete('/:id', async (req, res, next) => {

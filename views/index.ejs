@@ -1,65 +1,113 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <nav>
-      <a href="/" class="logo">Nodepop</a>
-      <form action="/" method="GET">
-        <input type="text" name="nombre" class="search-bar">
-        <select name="venta">
-          <option value="">compra/venta</option>
-          <option value="true">Comprar</option>
-          <option value="false">Vender</option>
-        </select>
-        <select name="precio">
-          <option value="0-50">0 - 50€ </option>
-          <option value="51-1000000000000000000000">51 - 1000000000000000000000€ </option>
-        </select>
-        <input type="submit" value="buscar">
-      </form>
-    </nav>
 
-    <% if (Object.keys(productos).length === 0) { %>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <nav>
+    <a href="/" class="logo">Nodepop</a>
+    <form action="/" method="GET">
+      <input type="text" name="nombre" class="search-bar">
+      <select name="venta">
+        <option value="">compra/venta</option>
+        <option value="true">Comprar</option>
+        <option value="false">Vender</option>
+      </select>
+      <select name="precio">
+        <option value="0-50">0 - 50€ </option>
+        <option value="51-1000000000000000000000">51 - 1000000000000000000000€ </option>
+      </select>
+      <input type="submit" value="buscar">
+    </form>
+  </nav>
+
+  <div id="nodepop">
+    <div class="listado">
+      <% if (Object.keys(productos).length === 0) { %>
       <h1>No se encontraron productos con esos criterios</h1>
       <a href="./">Volver a todos los productos</a>
-    <% } %>
+      <% } %>
 
-    <%productos.forEach(producto => { %>
+      <%productos.forEach(producto => { %>
       <article class="product">
         <div class="product-card">
           <h1 class="product-title"><%= producto.nombre %></h1>
           <img src="<%= producto.foto %>" alt="" style="max-width: 300px; max-height: 300px;">
           <div class="product-status">
             <span class="status">
-              <% if (producto.venta === true) { %> 
-                🪙 Compra
-              <% } else { %> 
-                🤑 vende
-              <% } %>  
+              <% if (producto.venta === true) { %>
+              🪙 Compra
+              <% } else { %>
+              🤑 vende
+              <% } %>
             </span>
             <span><%= producto.precio %>€</span>
-          </div>  
+          </div>
         </div>
         <div class="product-tags">
           <% producto.tags.forEach(tag => {  %>
-            <a href="./?tags=<%= tag %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>"><%= tag %></a>
-          <% }); %>  
+          <a href="./?tags=<%= tag %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>"><%= tag %></a>
+          <% }); %>
         </div>
 
       </article>
-      
-    <% }); %>
 
-    <div class="paginacion">
-      <% if (paginacion.skip >= 1) { %>
+      <% }); %>
+
+      <div class="paginacion">
+        <% if (paginacion.skip >= 1) { %>
         <a href="./?skip=<%= anterior = paginacion.skip - 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">⬅️ anterior</a>
         <a href="./?skip=<%= siguiente = paginacion.skip + 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">siguiente ➡️</a>
-      <% } else { %> 
+        <% } else { %>
         <a href="./?skip=<%= paginacion.skip = 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">siguiente ➡️</a>
-      <% } %>   
+        <% } %>
+      </div>
+
     </div>
-  </body>
+    <div class="lateral">
+      <h2>Crear producto</h2>
+      <form action="/api/productos" method="POST" id="form-add">
+        <select name="venta">
+          <option value="true">venta</option>
+          <option value="false">compra</option>
+        </select>
+        <input type="text" name="nombre" placeholder="nombre" required>
+        <input type="number" name="precio" placeholder="precio" required>
+        <input type="text" name="foto" placeholder="ruta de la imágen" required>
+        <ul id="tags">
+          <li><input type="text" name="tags" placeholder="etiqueta" required></li>
+        </ul>
+        <input type="button" onclick="addTag()" value="➕ añadir etiqueta">
+
+        <input type="submit" value="añadir">
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    let tagIndex = 0
+    let currentTag = undefined
+
+    function addTag() {
+      tagIndex += 1
+      currentTag = 'tag' + tagIndex
+      let inputTag = `<li id="${currentTag}"><input type="text" name="tags" placeholder="etiqueta" required><input type="button" onclick="removeTag('${currentTag}')" value="❌"></li>`;
+      document.getElementById('tags').innerHTML += inputTag
+
+    }
+
+    function removeTag(id) {
+      document.getElementById(id).remove()
+    }
+  </script>
+
+
+</body>
+
 </html>
