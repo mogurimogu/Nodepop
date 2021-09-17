@@ -5,7 +5,23 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%productos.forEach(producto => { %>
+      <h2><%= producto.nombre %></h2>
+      <img src="<%= producto.foto %>" alt="" style="max-width: 300px; max-height: 300px;">
+      <div><%= producto.precio %>€</div>
+      <% if (producto.venta === true) { %> 
+        Vender
+      <% } else { %> 
+        Comprar
+      <% } %> 
+    <% }); %>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <%= paginacion.skip %> 
+
   </body>
 </html>

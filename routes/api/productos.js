@@ -5,8 +5,6 @@ const router = express.Router();
 const Producto = require('../../models/Product');
 const utils = require('../../lib/utils');
 
-
-
 router.get('/', async (req, res, next) => {
     try {
         const nombre = req.query.nombre;
