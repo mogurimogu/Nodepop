@@ -14,7 +14,6 @@ router.get('/', async (req, res, next) => {
       const limit = parseInt(req.query.limit);
       const select = req.query.select;
       const sort = req.query.sort;
-      const title = "mierda"
 
       const filtro = {}
 

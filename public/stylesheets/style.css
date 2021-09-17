@@ -6,3 +6,55 @@ body {
 a {
   color: #00B7FF;
 }
+
+.product{
+  display: inline-flex;
+  flex-flow: column;
+  margin: 0.5rem;
+}
+.product-card{
+  border-radius: 5px;
+  border: 1px solid #00000013;
+  display: inline-flex;
+  flex-flow: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card > .product-title{
+  font-size: 16px;
+  padding: 0 0.5rem;
+}
+
+.product-card > .product-status{
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: #0000003f;
+  color: white;
+}
+
+.product-tags{
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-tags a{
+  display: inline-block;
+  margin: 0.4rem;
+  background-color: rgb(53, 204, 224);
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.product-tags a:hover{
+  opacity: 1;
+}

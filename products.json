@@ -4,14 +4,14 @@
             "nombre": "Wall-E, robot todoterreno",
             "venta": false,
             "precio": 50.00,
-            "foto": "./images/robot.jpg",
+            "foto": "./images/robot.png",
             "tags": ["gadget", "tecnología"]
         },
         {
-            "nombre": "coche fantástico",
+            "nombre": "Coche fantástico",
             "venta": true,
             "precio": 350000.00,
-            "foto": "./images/coche.jpg",
+            "foto": "./images/coche.png",
             "tags": ["vehículo", "lifestyle", "tecnología"]
         }
     ]
