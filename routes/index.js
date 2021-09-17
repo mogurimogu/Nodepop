@@ -3,15 +3,16 @@ var router = express.Router();
 const Producto = require('../models/Product');
 const utils = require('../lib/utils');
 
-/* GET home page. */
+/* GET home page. */  
+  
 router.get('/', async (req, res, next) => {
   try {
       const nombre = req.query.nombre;
       const venta = req.query.venta;
       const precio = req.query.precio;
       const tags = req.query.tags;
-      const skip = parseInt(req.query.skip);
-      const limit = parseInt(req.query.limit);
+      let skip = parseInt(req.query.skip);
+      let limit = parseInt(req.query.limit);
       const select = req.query.select;
       const sort = req.query.sort;
 
@@ -34,10 +35,12 @@ router.get('/', async (req, res, next) => {
       if(tags){
           filtro.tags = tags
       }
-      const productos = await Producto.lista(filtro, skip, limit, select, sort)
+
       
-      res.render('index', { productos, paginacion: {skip, limit} })
+      const productos = await Producto.lista(filtro, skip || 0 , limit || 10, select, sort)
       
+      res.render('index', { productos, paginacion: {nombre, venta, precio, tags, skip, limit} })
+
   } catch (err) {
       next(err)
   }

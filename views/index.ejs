@@ -6,9 +6,9 @@
   </head>
   <body>
     <nav>
-      <a href="/">Nodepop</a>
+      <a href="/" class="logo">Nodepop</a>
       <form action="/" method="GET">
-        <input type="text" name="nombre">
+        <input type="text" name="nombre" class="search-bar">
         <select name="venta">
           <option value="">Todos</option>
           <option value="true">Comprar</option>
@@ -41,7 +41,7 @@
         </div>
         <div class="product-tags">
           <% producto.tags.forEach(tag => {  %>
-            <a href="./?tags=<%= tag %>"><%= tag %></a>
+            <a href="./?tags=<%= tag %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>"><%= tag %></a>
           <% }); %>  
         </div>
 
@@ -49,10 +49,13 @@
       
     <% }); %>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <div class="paginacion">
+      <% if (paginacion.skip >= 1) { %>
+        <a href="./?skip=<%= anterior = paginacion.skip - 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">⬅️ anterior</a>
+        <a href="./?skip=<%= siguiente = paginacion.skip + 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">siguiente ➡️</a>
+      <% } else { %> 
+        <a href="./?skip=<%= paginacion.skip = 10 %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>&tags=<%= paginacion.tags %>">siguiente ➡️</a>
+      <% } %>   
+    </div>
   </body>
 </html>
