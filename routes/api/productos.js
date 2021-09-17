@@ -47,6 +47,22 @@ router.get('/', async (req, res, next) => {
 
 // Crear nuevos elementos
 
+
+router.post('/', async (req, res, next) => {
+    try {
+
+      const productoData = req.body;
+      const producto = new Producto(productoData);
+      const productoCreado = await producto.save();
+      res.status(201).json({ result: productoCreado });
+
+    } catch (err) {
+        
+      next(err);
+    }
+  });
+
+  
 router.post('/', async (req, res, next) => {
     try {
         const productData = req.body;
