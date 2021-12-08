@@ -4,5 +4,11 @@
 	"sell": "venta",
 	"search": "buscar",
 	"Cloud tags": "Nube de etiquetas",
-	"Create product": "Crear producto"
+	"Create product": "Crear producto",
+	"Login": "Acceso",
+	"Username": "Usuario",
+	"Password": "Contraseña",
+	"Verify credentials": "Verificar credenciales",
+	"Email": "Email",
+	"Invalid credentials": "Credenciales inválidas"
 }

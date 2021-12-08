@@ -3,7 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+const session = require('express-session');
+const LoginController = require("./controllers/loginController");
+const sessionAuth = require("./lib/sessionAuthMiddleware");
+const jwtAuth = require('./lib/jwtAuthMiddleware')
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -29,14 +32,33 @@ app.locals.title = "Nodepop";
 const i18n = require("./lib/i18nConfig");
 app.use(i18n.init);
 
+
+app.use(session({
+  name: 'nodeapi-session',
+  secret: 'B6%Lm%jgZPKtxL_&7y25at*F$XsFG7QK',
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 2 // 2 dias de inactividad
+  },
+  // store: MongoStore.create({ mongoUrl: process.env.MONGODB_CONNECTION_STRING })
+}));
+
 // Rutas de mi Api
-app.use("/api/productos", require("./routes/api/productos"));
-app.use("/api/tags", require("./routes/api/tags"));
+app.use("/api/productos", jwtAuth ,require("./routes/api/productos"));
+app.use("/api/tags", jwtAuth, require("./routes/api/tags"));
 
 // Rutas del website
-app.use("/", indexRouter);
+
+const loginController = new LoginController();
+
+
 app.use("/change-locale", require("./routes/change-locale"));
 app.use("/users", usersRouter);
+app.get("/login", loginController.index);
+app.post("/login", loginController.postJWT);
+
+app.use("/", sessionAuth, indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

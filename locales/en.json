@@ -4,5 +4,11 @@
 	"sell": "sell",
 	"search": "search",
 	"Cloud tags": "Cloud tags",
-	"Create product": "Create product"
+	"Create product": "Create product",
+	"Login": "Login",
+	"Username": "Username",
+	"Password": "Password",
+	"Verify credentials": "Verify credentials",
+	"Email": "Email",
+	"Invalid credentials": "Invalid credentials"
 }
