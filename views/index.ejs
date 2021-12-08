@@ -7,20 +7,22 @@
 </head>
 
 <body>
+  🌍 <a href="/change-locale/es">es</a> /
+  <a href="/change-locale/en">en</a>
   <nav>
     <a href="/" class="logo">Nodepop</a>
     <form action="/" method="GET">
       <input type="text" name="nombre" class="search-bar">
       <select name="venta">
-        <option value="">compra/venta</option>
-        <option value="true">Comprar</option>
-        <option value="false">Vender</option>
+        <option value=""><%= __('buy/sell') %></option>
+        <option value="true"><%= __('buy') %></option>
+        <option value="false"><%= __('sell') %></option>
       </select>
       <select name="precio">
         <option value="0-50">0 - 50€ </option>
         <option value="51-1000000000000000000000">51 - 1000000000000000000000€ </option>
       </select>
-      <input type="submit" value="buscar">
+      <input type="submit" value="<%= __('search') %>">
     </form>
   </nav>
 
@@ -68,13 +70,13 @@
 
     </div>
     <div class="lateral">
-      <h2>Nube de etiquetas</h2>
+      <h2><%= __('Cloud tags') %></h2>
       <div class="tag-cloud">
         <% for (const tag of tagList) { %> 
           <a href="./?tags=<%= tag %>&nombre=<%= paginacion.nombre %>&precio=<%= paginacion.precio %>&venta=<%= paginacion.venta %>"> <%= tag %>  </a>
         <% } %>       
       </div>
-      <h2>Crear producto</h2>
+      <h2><%= __('Create product') %></h2>
       <form action="/api/productos" method="POST" id="form-add">
         <select name="venta">
           <option value="true">venta</option>
