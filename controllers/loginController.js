@@ -1,5 +1,6 @@
 "use strict";
 const jwt = require("jsonwebtoken");
+const { token } = require("morgan");
 const { User } = require("../models");
 
 class LoginController {
@@ -34,16 +35,13 @@ class LoginController {
     try {
       const { email, password } = req.body;
 
+      console.log(email, password)
       const usuario = await User.findOne({ email });
 
       if (!usuario || !(await usuario.comparePassword(password))) {
         res.json({ error: "Invalid credentials" });
         return;
       }
-
-      req.session.loggedUser = {
-        _id: usuario._id,
-      };
 
       jwt.sign(
         { _id: usuario._id },
