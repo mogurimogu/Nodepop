@@ -3,14 +3,16 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+
 const session = require("express-session");
 const LoginController = require("./controllers/loginController");
 const sessionAuth = require("./lib/sessionAuthMiddleware");
 const jwtAuth = require("./lib/jwtAuthMiddleware");
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
+const AnuncioController = require("./controllers/anunciosController");
+const uploader = require("./lib/multerConfig");
 const MongoStore = require("connect-mongo");
 
+var indexRouter = require("./routes/index");
 var app = express();
 
 // Arranca la conexión con la base de datos
@@ -19,7 +21,6 @@ require("./lib/mongooseConection");
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -54,17 +55,21 @@ app.use((req, res, next) => {
 });
 
 const loginController = new LoginController();
+const anuncioController = new AnuncioController();
 
 // Rutas de mi Api
+app.post("/api/authenticate", loginController.postJWT);
+app.post(
+  "/api/anuncios",
+  [jwtAuth, uploader.single("foto")],
+  anuncioController.post
+);
 app.use("/api/anuncios", jwtAuth, require("./routes/api/productos"));
 app.use("/api/tags", jwtAuth, require("./routes/api/tags"));
-app.post("/api/authenticate", loginController.postJWT);
 
 // Rutas del website
 
-
 app.use("/change-locale", require("./routes/change-locale"));
-app.use("/users", usersRouter);
 app.get("/login", loginController.index);
 app.post("/login", loginController.post);
 
