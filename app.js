@@ -8,6 +8,7 @@ const session = require("express-session");
 const LoginController = require("./controllers/loginController");
 const sessionAuth = require("./lib/sessionAuthMiddleware");
 const jwtAuth = require("./lib/jwtAuthMiddleware");
+const thumbnailCreator = require("./lib/thumbnailCreator");
 const AnuncioController = require("./controllers/anunciosController");
 const uploader = require("./lib/multerConfig");
 const MongoStore = require("connect-mongo");
@@ -61,7 +62,7 @@ const anuncioController = new AnuncioController();
 app.post("/api/authenticate", loginController.postJWT);
 app.post(
   "/api/anuncios",
-  [jwtAuth, uploader.single("foto")],
+  [jwtAuth, uploader.single("foto"), thumbnailCreator],
   anuncioController.post
 );
 app.use("/api/anuncios", jwtAuth, require("./routes/api/productos"));

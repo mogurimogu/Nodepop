@@ -7,6 +7,7 @@ const productSchema = mongoose.Schema({
     venta: Boolean,
     precio: Number,
     foto: String,
+    thumbnail: String,
     tags: Array
 });
 
