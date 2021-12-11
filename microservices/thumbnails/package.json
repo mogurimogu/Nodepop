@@ -1,0 +1,16 @@
+{
+  "name": "thumbnails-conversor",
+  "version": "1.0.0",
+  "description": "thumbnails creator",
+  "main": "thumbnailsService.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cote": "^1.0.3",
+    "jimp": "^0.16.1",
+    "nodemon": "^2.0.15"
+  }
+}

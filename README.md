@@ -11,11 +11,23 @@ Primero haremos una primera carga inicial en la base de datos con el siguiente s
 npm run initDB
 ```
 
-Arrancar herramienta en **modo desarollador**:
+Instalamos las correspondientes **dependencias**:
 
 ```sh
-npm run dev
+npm i
 ```
+
+Arrancar herramienta y los microservicios con **PM2**:
+
+```sh
+pm2 start ecosystem.config.js
+```
+
+El endpoint de autenticación es:
+
+[http://localhost:3000/api/authenticate](http://localhost:3000/api/authenticate)
+
+Este te devolverá un token JWT que servirá para acceder al resto de la api
 
 La url donde se ejecuta la api es:
 
@@ -44,8 +56,10 @@ para ver las etiquetas de todos los productos:
 ----
 ## Útiles
 
-### priceSplitter:
+### PriceSplitter:
 A la hora de aplicar el filtro precio se ejecuta una funcion llamada **priceSplitter** la cual devuelve 2 valores con los cuales ayuda a la hora del filtrado, esta función siempre devuelve 2 valores siendo el mínimo 0
+### Thumbnail conversor:
+El microservicio **Thumbnail conversor** devuelve los datos necesarios para el trato de las imágenes que se realizan con **sharp**
 
 ----
 
